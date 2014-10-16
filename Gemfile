@@ -48,4 +48,5 @@ gem 'spring',        group: :development
 
 
 gem 'rspotify'
+#gem 'omniauth-spotify'
 # gem 'lastfm'

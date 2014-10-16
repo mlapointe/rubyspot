@@ -1,0 +1,20 @@
+
+<!-- PLAYLISTS INDEX -->
+
+<%= render partial: 'shared/navbar', locals: {active: 'Playlists'} %>
+
+
+<div class="contain" >
+
+
+  <%= image_tag(@suser.images.first['url']) %>
+  <h1> <%= @suser.display_name %> </h1>
+
+  <ul class="playlists">
+    <% @playlists.each do |plist| %>
+      <li><%= image_tag(plist.images)%><%= plist.name %></li>
+    <% end %>
+  </ul>
+
+
+</div><!-- /.container -->

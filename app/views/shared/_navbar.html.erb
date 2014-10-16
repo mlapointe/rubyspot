@@ -8,14 +8,12 @@
         <span class="icon-bar"></span>
       </button>
 
-      <%= link_to(root_path, class: 'navbar-brand') do %><%= image_tag("MLLogo-white.png") %><% end %>
+      <%= link_to(root_path, class: 'navbar-brand') do %><%= image_tag("musixlogo.png") %><% end %>
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li <% if active == 'Home' %> class="active"<% end %>><%= link_to "Home", root_path %></li>
-        <li <% if active == 'About' %> class="active"<% end %>><%= link_to "About", about_index_path %></li>
-        <li <% if active == 'Music' %> class="active"<% end %>><%= link_to "Music", music_index_path %></li>
-        <li <% if active == 'Contact' %> class="active"<% end %>><%= link_to "Contact", contact_index_path %></li>
+        <li <% if active == 'Playlists' %> class="active"<% end %>><%= link_to "Playlists", playlists_path %></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>

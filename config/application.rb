@@ -19,5 +19,10 @@ module Musix
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+
+
+    RSpotify::authenticate("2e400e64a6304722adc3d9b33bef90d2", "0eea6df8cd134bdca8dffc5c12c2b71f")
+
   end
 end
