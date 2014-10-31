@@ -1,0 +1,11 @@
+
+
+<%= render partial: 'shared/navbar', locals: {active: 'Playlists'} %>
+
+<div class="uploadform">
+  <%= form_for(:uploaded_file, :url => playlists_parsexml_path) do |f| %>
+        <%= f.label :uploaded_file, 'Upload your file.' %><br />
+        <%= f.file_field :uploaded_file %>
+        <%= f.submit 'upload' %>
+  <% end %>
+</div>

@@ -11,10 +11,12 @@
   <h1> <%= @suser.display_name %> </h1>
 
   <ul class="playlists">
-    <% @playlists.each do |plist| %>
-      <li><%= image_tag(plist.images)%><%= plist.name %></li>
+    <% @savedArtists.each do |plist| %>
+      <li><%= plist %></li>
     <% end %>
   </ul>
+
+  <%= link_to( "Upload from iTunes and Add to Spotify", "/playlists/upload") %>
 
 
 </div><!-- /.container -->

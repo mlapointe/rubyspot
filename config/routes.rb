@@ -7,8 +7,9 @@ Rails.application.routes.draw do
 
   get "/auth/:provider/callback" => "sessions#create"
 
-  resources :playlists, :only => :index
-
+  resources :playlists, only: [:index, :create]
+  get "/playlists/upload" => "playlists#upload"
+  post "/playlists/parsexml" => "playlists#parsexml"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

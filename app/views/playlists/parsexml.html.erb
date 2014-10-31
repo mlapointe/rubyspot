@@ -1,0 +1,8 @@
+
+<%= render partial: 'shared/navbar', locals: {active: 'Playlists'} %>
+
+<ul class="playlists" margin-top="55px">
+  <% @songnames.zip(@artistnames).each do |name, artist| %>
+    <li> <%= name %> - <%= artist %> </li>
+  <% end %>
+</ul>
