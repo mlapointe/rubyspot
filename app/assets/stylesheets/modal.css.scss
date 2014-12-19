@@ -2,30 +2,51 @@
 
 div.modal{
 
+  div.modal-content{
+    background: black;
+    color:white;
 
-  div.modal-body{
+    a{
+      color: white;
+    }
 
-    height:600px;
-    display: inline-block;
+    a.active{
+      color: #73b305; //spotify green
+    }
 
-    div.body-left{
-      width: calc(1/3);
-      float: left;
+    button{
+      color:white;
+    }
 
-      img{
-        width:250px;
+    div.modal-body{
 
+      height:500px;
+      width:600px;
+      display: inline-block;
+      font-size: 20px;
+
+
+      div.body-left{
+        width: 50%;
+        float: left;
+
+        img{
+          width:250px;
+
+        }
       }
+
+      div.body-right{
+        float:left;
+        width: 50%;
+        overflow-y: auto;
+        height: 400px;
+      }
+
+
+
+
+
     }
-
-    div.body-right{
-      float:left;
-      width: calc(2/3);
-    }
-
-
-
-
-
   }
 }

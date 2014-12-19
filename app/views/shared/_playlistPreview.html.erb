@@ -5,9 +5,9 @@
 
   <% albumNum = 0 %>
   <% playlist.each do |track|%>
-  <div class="imagewrap">
+  <%= tag("div", class:"imagewrap", onmouseover:"playaudio(#{albumNum})", 'data-toggle' =>"modal", 'data-target' => "#albumModal", 'data-albumNum' => albumNum, 'data-track' => track.id, 'data-album' => track.album.name, 'data-artist' => track.artists.first.name)  %>
     <%= tag("audio", src:"#{track.preview_url}") %> </audio>
-    <%= image_tag(track.album.images.first['url'], class:"main audioimg", onmouseover:"playaudio(#{albumNum})", 'data-toggle' =>"modal", 'data-target' => "#albumModal", 'data-albumNum' => albumNum, 'data-track' => track.id, 'data-album' => track.album.name, 'data-artist' => track.artists.first.name) %>
+    <%= image_tag(track.album.images.first['url'], class:"main audioimg") %>
     <div class="imagedesc">
       <p><%= track.album.name %></p>
       <p><%= track.artists.first.name %></p>
@@ -68,10 +68,10 @@
 
       // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 
-      //UPDATE MODAL TITLE & fill .modal_body with ajax
-
       var modal = $(this)
       modal.find('.modal-title').html(albumName + " - <small>" + artist + "</small>")
+      modal.find('.modal-body').html("") // Reset old HTML info
+
 
       $.ajax({
         type:'POST',
