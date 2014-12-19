@@ -1,0 +1,81 @@
+
+
+<div class="albums col-xs-12">
+  <h1 class="main-title"> New Music Tuesday </h1>
+
+  <% albumNum = 0 %>
+  <% playlist.each do |track|%>
+  <div class="imagewrap">
+    <%= tag("audio", src:"#{track.preview_url}") %> </audio>
+    <%= image_tag(track.album.images.first['url'], class:"main audioimg", onclick:"showModal(#{albumNum})", onmouseover:"playaudio(#{albumNum})", 'data-toggle' =>"modal", 'data-target' => "#albumModal", 'data-album' => "#{albumNum}", 'data-track' => "#{track.id}") %>
+    <div class="imagedesc">
+      <p><%= track.album.name %></p>
+      <p><%= track.artists.first.name %></p>
+    </div>
+  </div>
+
+  <% albumNum +=1 %>
+  <% end %>
+
+</div>
+
+
+<div class="modal fade" id="albumModal" tabindex="-1" role="dialog" aria-labelledby="albumModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" ></h4>
+      </div>
+
+      <div class="modal-body">
+
+        <!-- Modal Content Inserted here from createModal -->
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+    var audio = document.getElementsByTagName("audio");
+    var lastAudio = 0;
+
+
+    function playaudio(num){
+      audio[lastAudio].pause();
+      lastAudio = num;
+      audio[num].play();
+
+    }
+
+    function showModal(albumNum){
+
+      $("#"+albumNum+"albumModal").modal('toggle');
+    }
+
+
+    $('#exampleModal').on('show.bs.modal', function (event) {
+      var img = $(event.relatedTarget) // Button that triggered the modal
+      var trackID = img.data('track') // Extract info from data-* attributes
+      var albumNum = img.data('album')
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+
+        //UPDATE MODAL TITLE & fill .modal_body with ajax
+
+      $.ajax({
+        type:'POST',
+        url: '/home/createModal',
+        data: $.param({ track: trackID, album: albumNum })
+      });
+
+      var modal = $(this)
+      modal.find('.modal-title').text( )
+      modal.find('.modal-body').val(recipient)
+    })
+
+</script>

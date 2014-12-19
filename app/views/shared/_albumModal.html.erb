@@ -1,0 +1,30 @@
+
+<%= tag("div", class:"modal fade", id:albumNum.to_s+"albumModal", tabindex:"-1", role:"dialog", 'aria-labelledby' => "albumModalLabel", 'aria-hidden' => "true") %>
+<!-- <div class="modal fade" id="albumModal" tabindex="-1" role="dialog" aria-labelledby="albumModalLabel" aria-hidden="true"> -->
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" ><%=track.artists.first.name%> - <small><%=track.album.name%></small> </h4>
+      </div>
+
+      <div class="modal-body">
+        <div class="body-left">
+          <%= image_tag(track.album.images.first['url'])%>
+          <h4 ><%= link_to(track.artists.first.name, "https://open.spotify.com/artist/#{track.artists.first.id}", target:"_blank") %> </h4>
+        </div>
+
+        <div class="body-right">
+          <ol>
+          <% track.album.tracks.each do |trk| %>
+            <li> <%=trk.name %> </li>
+          <% end %>
+          </ol>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

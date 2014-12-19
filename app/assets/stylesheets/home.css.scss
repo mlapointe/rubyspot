@@ -8,3 +8,53 @@ img.login-button{
   height:100px;
   width:400px;
 }
+
+div.albums{
+
+  padding-top:50px;
+
+  
+  div.imagewrap{
+
+    position:relative;
+    overflow:hidden;
+    height:150px;
+    width: 150px;
+    display:inline-block;
+
+
+
+    img{
+      padding:3px;
+      height:100%;
+      width: 100%;
+
+
+    }
+
+    div.imagedesc{
+
+      position:absolute;
+      bottom:-100%;
+      width:100%;
+      background-color:black;
+      opacity:0.7;
+      filter:alpha(opacity=60); /* IE transparency */
+      transition: all 0.3s ease;
+
+      p{
+        font-family: 'helvetica';
+        font-size:15px;
+        color:white;
+
+      }
+
+    }
+
+  }
+
+  div.imagewrap:hover .imagedesc {
+    bottom:0;
+  }
+
+} /* div.albums */

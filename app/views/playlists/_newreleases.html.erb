@@ -1,0 +1,10 @@
+<%= image_tag(@suser.images.first['url']) %>
+<h1> <%= @suser.display_name %> </h1>
+
+<ul class="playlists">
+  <% @savedArtists.each do |plist| %>
+    <li><%= plist %></li>
+  <% end %>
+</ul>
+
+<%= link_to( "Upload from iTunes and Add to Spotify", "/playlists/upload") %>

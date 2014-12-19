@@ -1,12 +1,19 @@
 class PlaylistsController < ApplicationController
 
-  def index
+  helper_method :get_release_info
 
+  def index
+    render :index
+    get_release_info
+
+  end
+
+
+  def get_release_info
     # Rails.logger.info("PARAMS = #{params}")
     @suser = RSpotify::User.new(params)
 
     # @playlists = @suser.playlists #saved_tracks(limit:20)
-
 
     # PULL ALL SAVED TRACKS FROM SERVER
     @savedTracks = []
@@ -14,15 +21,15 @@ class PlaylistsController < ApplicationController
     tracks = @suser.saved_tracks(limit:50, offset:offsetvar)
     @savedTracks +=tracks
 
-    lastPull = 0
-    while tracks.count == 50 && lastPull == 0 do
-      offsetvar +=50
-      tracks = @suser.saved_tracks(limit:50, offset:offsetvar)
-      @savedTracks += tracks
-      if tracks.count <50
-        lastPull = 1
-      end
-    end
+    # lastPull = 0
+    # while tracks.count == 50 && lastPull == 0 do
+    #   offsetvar +=50
+    #   tracks = @suser.saved_tracks(limit:50, offset:offsetvar)
+    #   @savedTracks += tracks
+    #   if tracks.count <50
+    #     lastPull = 1
+    #   end
+    # end
 
 
     # CREATE LIST OF SAVED ARTISTS
@@ -32,6 +39,11 @@ class PlaylistsController < ApplicationController
     end
     @savedArtists = @savedArtists.uniq
 
+
+    # Refresh Page After information is gathered
+    render :update do |page|
+          page.replace_html "display_ajax", :partial => 'newreleases'
+     end
 
   end
 

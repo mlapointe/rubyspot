@@ -6,6 +6,11 @@
 
 <div class="contain" >
 
+
+
+  <%= render partial: 'shared/playlistPreview', locals: { playlist:@favAlbum} %>
+
+
   <h1> Welcome to Musix. Sign in below to see your playlists.</h1>
 
   <%= link_to('/auth/spotify') do %><%= image_tag("log_in-desktop.svg", class:"login-button") %> <% end %>
