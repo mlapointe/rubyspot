@@ -7,7 +7,7 @@
   <% playlist.each do |track|%>
   <div class="imagewrap">
     <%= tag("audio", src:"#{track.preview_url}") %> </audio>
-    <%= image_tag(track.album.images.first['url'], class:"main audioimg", onclick:"showModal(#{albumNum})", onmouseover:"playaudio(#{albumNum})", 'data-toggle' =>"modal", 'data-target' => "#albumModal", 'data-album' => "#{albumNum}", 'data-track' => "#{track.id}") %>
+    <%= image_tag(track.album.images.first['url'], class:"main audioimg", onmouseover:"playaudio(#{albumNum})", 'data-toggle' =>"modal", 'data-target' => "#albumModal", 'data-albumNum' => albumNum, 'data-track' => track.id, 'data-album' => track.album.name, 'data-artist' => track.artists.first.name) %>
     <div class="imagedesc">
       <p><%= track.album.name %></p>
       <p><%= track.artists.first.name %></p>
@@ -55,27 +55,36 @@
 
     function showModal(albumNum){
 
-      $("#"+albumNum+"albumModal").modal('toggle');
+      $("#albumModal").modal('toggle');
     }
 
 
-    $('#exampleModal').on('show.bs.modal', function (event) {
+    $('#albumModal').on('show.bs.modal', function (event) {
       var img = $(event.relatedTarget) // Button that triggered the modal
       var trackID = img.data('track') // Extract info from data-* attributes
-      var albumNum = img.data('album')
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      var albumNum = img.data('albumNum')
+      var albumName = img.data('album')
+      var artist = img.data('artist')
 
-        //UPDATE MODAL TITLE & fill .modal_body with ajax
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+
+      //UPDATE MODAL TITLE & fill .modal_body with ajax
+
+      var modal = $(this)
+      modal.find('.modal-title').html(albumName + " - <small>" + artist + "</small>")
 
       $.ajax({
         type:'POST',
         url: '/home/createModal',
-        data: $.param({ track: trackID, album: albumNum })
-      });
+        data: $.param({ track: trackID, album: albumNum }),
+        success: function(response){
+          console.log(response)
+          modal.find('.modal-body').html(response)
 
-      var modal = $(this)
-      modal.find('.modal-title').text( )
-      modal.find('.modal-body').val(recipient)
+        }
+      })
+
+
     })
 
 </script>

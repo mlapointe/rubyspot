@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get "/auth/:provider/callback" => "sessions#create"
 
-  post "/home/createModal" => "home#createModal"
+  post "/home/createModal", to: "home#createModal"
 
   resources :playlists, only: [:index, :create]
   get "/playlists/upload" => "playlists#upload"

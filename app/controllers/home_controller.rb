@@ -15,13 +15,19 @@ class HomeController < ApplicationController
 
   def createModal
 
-    trackID = params['trackID']
+    trackID = params['track']
+    Rails.logger.info("TRACKID = #{trackID}")
     albumNum = params['album']
     track = RSpotify::Track.find(trackID)
 
     ## RETURN HTML FOR .modal_body
 
+    respond_to do |format|
+      format.html { render partial: 'shared/albumModal', locals: { track: track}}
+    end
 
   end
+
+
 
 end
